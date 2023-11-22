@@ -6,7 +6,7 @@
 - копирование таблицы в буфер обмена
 
 ## Онлайн доступ
-http://farakshin.github.io/customSwagger/#/pet/updatePet
+http://farakshin.github.io/customSwagger/
 ## Оффлайн доступ
 ### Установка
 - раскапуйте архив
