@@ -7,5 +7,5 @@
 
 ## Использование
 - разместить спецификацию (.yml, .json) в папку customSwagger
-- в браузере открыть[localhost:8080](localhost:8080)
-- в интерфейсе вместо https://petstore.swagger.io/v2/swagger.json заполнить http://localhost:8080/[файл спецификации] (пример http://localhost:8080/test.yml) и нажать "Explore"
+- в браузере открыть [localhost:8080](http://localhost:8080)
+- в интерфейсе вместо https://petstore.swagger.io/v2/swagger.json заполнить ```http://localhost:8080/файл_спецификации``` (пример ```http://localhost:8080/test.yml```) и нажать "Explore"
