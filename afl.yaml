@@ -1,0 +1,2186 @@
+openapi: 3.0.1
+info:
+  title: UVDO-CAMEL-ADAPTER SWAGGER
+  version: 1.0.0
+servers:
+  - url: https://sbt-odo-002.delta.sbrf.ru/
+  - url: https://sbt-odo-001.delta.sbrf.ru/
+tags:
+
+  - name: Открытие АФЛ
+  - name: Изменение АФЛ
+  - name: Отзыв АФЛ
+  - name: Трансферация АФЛ
+  - name: Передача документов для раскрытия
+  - name: Получение запроса на подтверждение заявления
+  - name: Получение согласия на запрос выписки
+  - name: Получение референса и доп. условий
+
+
+paths:
+  /efs-lc/conditions:
+    post:
+      tags:
+        - Получение референса и доп. условий
+      summary: Сервис получения референса и доп. условий
+      operationId: lcConditions
+      requestBody:
+        description: Тело запроса
+        content:
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/lcConditionsRq'
+        required: true
+      responses:
+        200:
+          description: OK
+          content:
+            application/xml:
+              schema:
+                $ref: "#/components/schemas/lcConditionsRs"
+        400:
+          description: Bad request
+          content: {}
+        401:
+          description: Unauthorized
+          content: {}
+        403:
+          description: Forbidden
+          content: {}
+        404:
+          description: Not Found
+          content: {}
+        500:
+          description: Internal service error
+          content: {}
+        503:
+          description: Service Unavaliable
+          content: {}
+  /efs-lc/amendment:
+    post:
+      tags:
+        - Изменение АФЛ
+      summary: Сервис заявления на изменение АФЛ
+      operationId: lcAmendment
+      parameters:
+        - in: header
+          name: operationID
+          schema:
+            type: string
+            default: '45678909876545678'
+          required: true
+        - in: header
+          name: ufsZone
+          schema:
+            type: string
+            default: '33243242242234234'
+          required: true
+        - in: header
+          name: x-request-id
+          schema:
+            type: string
+            default: '123456543456468456563536664563617502'
+          required: true
+      requestBody:
+        description: Тело запроса
+        content:
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/lcAmendRq'
+        required: true
+      responses:
+        200:
+          description: OK
+          content:
+            application/xml:
+              schema:
+                $ref: "#/components/schemas/lcAmendRs"
+        400:
+          description: Bad request
+          content: { }
+        401:
+          description: Unauthorized
+          content: { }
+        403:
+          description: Forbidden
+          content: { }
+        404:
+          description: Not Found
+          content: { }
+        500:
+          description: Internal service error
+          content: { }
+        503:
+          description: Service Unavaliable
+          content: { }
+  /efs-lc/issue:
+    post:
+      tags:
+        - Открытие АФЛ
+      summary: Сервис по открытию АФЛ
+      operationId: lcIssue
+      parameters:
+        - in: header
+          name: operationID
+          schema:
+            type: string
+            default: '45678909876545678'
+          required: true
+        - in: header
+          name: ufsZone
+          schema:
+            type: string
+            default: zonneeee
+          required: true
+        - in: header
+          name: x-request-id
+          schema:
+            type: string
+            default: '123456543456468456563536664563617502'
+          required: true
+      requestBody:
+        description: Тело запроса
+        content:
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/lcIssueRq'
+        required: true
+      responses:
+        200:
+          description: OK
+          content:
+            application/xml:
+              schema:
+                $ref: "#/components/schemas/lcIssueRs"
+        400:
+          description: Bad request
+          content: { }
+        401:
+          description: Unauthorized
+          content: { }
+        403:
+          description: Forbidden
+          content: { }
+        404:
+          description: Not Found
+          content: { }
+        500:
+          description: Internal service error
+          content: { }
+        503:
+          description: Service Unavaliable
+          content: { }
+  /efs-lc/revoke:
+    post:
+      tags:
+        - Отзыв АФЛ
+      summary: Сервис по отзыву АФЛ
+      operationId: lcRevoke
+      parameters:
+        - in: header
+          name: Content-Type
+          schema:
+            type: string
+            default: 'application/xml'
+          required: true
+        - in: header
+          name: operationID
+          schema:
+            type: string
+            default: '45678909876545678'
+          required: true
+        - in: header
+          name: ufsZone
+          schema:
+            type: string
+            default: 'zonneeee'
+          required: true
+        - in: header
+          name: LcChannel
+          schema:
+            type: string
+            default: 'SBOL_PRO'
+          required: true
+        - in: header
+          name: x-request-id
+          schema:
+            type: string
+            default: 'a982-5114-48asdf97-0f-430595cc7b'
+          required: true
+      requestBody:
+        description: Тело запроса
+        content:
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/lcRevokeRq'
+        required: true
+      responses:
+        200:
+          description: OK
+          content:
+            application/xml:
+              schema:
+                $ref: "#/components/schemas/lcRevokeRs"
+        400:
+          description: Bad request
+          content: { }
+        401:
+          description: Unauthorized
+          content: { }
+        403:
+          description: Forbidden
+          content: { }
+        404:
+          description: Not Found
+          content: { }
+        500:
+          description: Internal service error
+          content: { }
+        503:
+          description: Service Unavaliable
+          content: { }
+  /efs-lc/transfer:
+    post:
+      tags:
+        - Трансферация АФЛ
+      summary: Сервис заявления на трансферацию АФЛ
+      operationId: lcTransfer
+      parameters:
+        - in: header
+          name: Content-Type
+          schema:
+            type: string
+            default: 'application/xml'
+          required: true
+        - in: header
+          name: operationID
+          schema:
+            type: string
+            default: '45678909876545678'
+          required: true
+        - in: header
+          name: ufsZone
+          schema:
+            type: string
+            default: 'zonneeee'
+          required: true
+        - in: header
+          name: LcChannel
+          schema:
+            type: string
+            default: 'SBOL_PRO'
+          required: true
+        - in: header
+          name: x-request-id
+          schema:
+            type: string
+            default: 'a982-5114-48asdf97-0f-430595cc7b'
+          required: true
+      requestBody:
+        description: Тело запроса
+        content:
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/lcTransferRq'
+        required: true
+      responses:
+        200:
+          description: OK
+          content:
+            application/xml:
+              schema:
+                $ref: "#/components/schemas/lcTransferRs"
+        400:
+          description: Bad request
+          content: { }
+        401:
+          description: Unauthorized
+          content: { }
+        403:
+          description: Forbidden
+          content: { }
+        404:
+          description: Not Found
+          content: { }
+        500:
+          description: Internal service error
+          content: { }
+        503:
+          description: Service Unavaliable
+          content: { }
+  /efs-lc/confirmation:
+    post:
+      tags:
+        - Получение запроса на подтверждение заявления
+      summary: Сервис получения запроса на потверждение заявления
+      operationId: lcConfirmation
+      parameters:
+        - in: header
+          name: Content-Type
+          schema:
+            type: string
+            default: 'application/xml'
+          required: true
+        - in: header
+          name: operationID
+          schema:
+            type: string
+            default: '45678909876545678'
+          required: true
+        - in: header
+          name: ufsZone
+          schema:
+            type: string
+            default: 'zonneeee'
+          required: true
+        - in: header
+          name: LcChannel
+          schema:
+            type: string
+            default: 'SBOL_PRO'
+          required: true
+        - in: header
+          name: x-request-id
+          schema:
+            type: string
+            default: 'a982-5114-48asdf97-0f-430595cc7b'
+          required: true
+        - in: header
+          name: eventType
+          schema:
+            type: string
+            enum:
+              - AMENDMENT_CONSENTED
+              - AMENDMENT_REFUSED
+              - REVOCATION_CONSENTED
+              - REVOCATION_REFUSED
+              - DISCREPANCIES_REFUSED
+              - DISCREPANCIES_CONSENTED
+          required: true
+      requestBody:
+        description: Тело запроса
+        content:
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/lcApplicationAcceptRq'
+        required: true
+      responses:
+        200:
+          description: OK
+          content:
+            application/xml:
+              schema:
+                $ref: "#/components/schemas/lcApplicationAcceptRs"
+        400:
+          description: Bad request
+          content: { }
+        401:
+          description: Unauthorized
+          content: { }
+        403:
+          description: Forbidden
+          content: { }
+        404:
+          description: Not Found
+          content: { }
+        500:
+          description: Internal service error
+          content: { }
+        503:
+          description: Service Unavaliable
+          content: { }
+  /efs-lc/consent-extract:
+    post:
+      tags:
+        - Получение согласия на запрос выписки
+      summary: Сервис получения согласия на запрос выписки
+      operationId: lcConsentExtract
+      parameters:
+        - in: header
+          name: Content-Type
+          schema:
+            type: string
+            default: 'application/xml'
+          required: true
+        - in: header
+          name: operationID
+          schema:
+            type: string
+            default: '45678909876545678'
+          required: true
+        - in: header
+          name: ufsZone
+          schema:
+            type: string
+            default: 'zonneeee'
+          required: true
+        - in: header
+          name: LcChannel
+          schema:
+            type: string
+            default: 'SBOL_PRO'
+          required: true
+        - in: header
+          name: x-request-id
+          schema:
+            type: string
+            default: 'a982-5114-48asdf97-0f-430595cc7b'
+          required: true
+      requestBody:
+        description: Тело запроса
+        content:
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/lcConsentExtractRequestRq'
+        required: true
+      responses:
+        200:
+          description: OK
+          content:
+            application/xml:
+              schema:
+                $ref: "#/components/schemas/lcConsentExtractRequestRs"
+        400:
+          description: Bad request
+          content: { }
+        401:
+          description: Unauthorized
+          content: { }
+        403:
+          description: Forbidden
+          content: { }
+        404:
+          description: Not Found
+          content: { }
+        500:
+          description: Internal service error
+          content: { }
+        503:
+          description: Service Unavaliable
+          content: { }
+  /efs-lc/documents-for-execution:
+    post:
+      tags:
+        - Передача документов для раскрытия
+      summary: Сервис передачи документов для раскрытия
+      operationId: lcDocumentsForExecution
+      parameters:
+        - in: header
+          name: Content-Type
+          schema:
+            type: string
+            default: 'application/xml'
+          required: true
+        - in: header
+          name: operationID
+          schema:
+            type: string
+            default: '45678909876545678'
+          required: true
+        - in: header
+          name: ufsZone
+          schema:
+            type: string
+            default: 'zonneeee'
+          required: true
+        - in: header
+          name: LcChannel
+          schema:
+            type: string
+            default: 'SBOL_PRO'
+          required: true
+        - in: header
+          name: x-request-id
+          schema:
+            type: string
+            default: 'a982-5114-48asdf97-0f-430595cc7b'
+          required: true
+      requestBody:
+        description: Тело запроса
+        content:
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/lcDocumentsForExecutionRq'
+        required: true
+      responses:
+        200:
+          description: OK
+          content:
+            application/xml:
+              schema:
+                $ref: "#/components/schemas/lcDocumentsForExecutionRs"
+        400:
+          description: Bad request
+          content: { }
+        401:
+          description: Unauthorized
+          content: { }
+        403:
+          description: Forbidden
+          content: { }
+        404:
+          description: Not Found
+          content: { }
+        500:
+          description: Internal service error
+          content: { }
+        503:
+          description: Service Unavaliable
+          content: { }
+
+components:
+  schemas:
+    EpkId:
+      xml:
+        prefix: sbol
+      description: ЕПК ИД клиента
+      type: string
+      maxLength: 50
+      example: "1485932906320904044"
+    lcRevokeRq:
+      description: Запрос на отзыв аккредитива ФЛ
+      type: object
+      xml:
+        namespace: http://sbolpro.afl.tfido.sbrf.ru
+        prefix: sbol
+      properties:
+        epkId:
+          $ref: '#/components/schemas/EpkId'
+        trustedParty:
+          $ref: '#/components/schemas/TrustedParty'
+        application:
+          $ref: '#/components/schemas/RevokeApplication'
+        "xmlns:xsi":
+          type: string
+          enum:
+            - "http://www.w3.org/2001/XMLSchema-instance"
+          xml:
+            attribute: true
+      required: [epkId, application]
+    RevokeApplication:
+      description: Заявление на отзыв аккредитива
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/BaseApplication'
+        - type: object
+          properties:
+            additionalParams:
+              $ref: '#/components/schemas/LcAmendmentRevocationConfirmationParams'
+          required: [additionalParams]
+    lcAmendRq:
+      description: Запрос на изменение аккредитива ФЛ
+      type: object
+      xml:
+        namespace: http://sbolpro.afl.tfido.sbrf.ru
+        prefix: sbol
+      properties:
+        epkId:
+          xml:
+            prefix: sbol
+          description: ЕПК ИД клиента
+          type: string
+          maxLength: 50
+          example: "1485932906320904044"
+        trustedParty:
+          $ref: '#/components/schemas/TrustedParty'
+        application:
+          $ref: '#/components/schemas/AmendApplication'
+        "xmlns:xsi":
+          type: string
+          enum:
+            - "http://www.w3.org/2001/XMLSchema-instance"
+          xml:
+            attribute: true
+      required: [epkId, application]
+    AmendApplication:
+      description: Заявление на изменение аккредитива
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/BaseApplication'
+        - type: object
+          properties:
+            lcAmendment:
+              $ref: '#/components/schemas/LetterOfCreditAmendment'
+            additionalParams:
+              $ref: '#/components/schemas/LcAmendmentRevocationConfirmationParams'
+          required: [lcAmendment, additionalParams]
+    IssueApplication:
+      description: Заявление на открытие аккредитива
+      type: object
+      xml:
+        namespace: http://sbolpro.afl.tfido.sbrf.ru
+        prefix: sbol
+      allOf:
+        - $ref: '#/components/schemas/BaseApplication'
+        - type: object
+          properties:
+            lc:
+              $ref: '#/components/schemas/BaseLc'
+            lcIssueParams:
+              $ref: '#/components/schemas/LcIssueConfirmationParams'
+          required: [lc, lcIssueParams]
+    BaseApplication:
+      description: Базовый класс всех заявлений
+      type: object
+      xml:
+        prefix: sbol
+      properties:
+        signDate:
+          description: Дата и время подписания заявления
+          type: string
+          xml:
+            prefix: sbol
+          format: dateTime
+          example: "2021-10-04T15:26:02.585+03:00"
+        applicationBankUnit:
+          $ref: '#/components/schemas/BankUnit'
+        operatorId:
+          description: Табельный номер сотрудника ВСП, создавшего заявление
+          type: string
+          xml:
+            prefix: sbol
+          maxLength: 10
+          example: 2629327207
+        operatorName:
+          description: ФИО сотрудника ВСП, создавшего заявление
+          type: string
+          xml:
+            prefix: sbol
+          maxLength: 300
+          example: Иванов Иван Иванович
+      required: [signDate, applicationBankUnit]
+    LcAmendmentRevocationConfirmationParams:
+      description: Параметры сделки нужные при подтверждении изменения/отзыва аккредитива
+      type: object
+      xml:
+        prefix: sbol
+      properties:
+        reference:
+          description: референс отзываемой/изменяемой сделки
+          type: string
+          xml:
+            prefix: sbol
+          maxLength: 50
+          example: E2343322005
+        productType:
+          $ref: '#/components/schemas/ProductType'
+        bankMarks:
+          $ref: '#/components/schemas/ConditionTexts'
+        specialInstructions:
+          $ref: '#/components/schemas/ConditionTexts'
+        commission:
+          $ref: '#/components/schemas/Commission'
+        mortgageManagerApproval:
+          $ref: '#/components/schemas/Approval'
+        returnCoverage:
+          $ref: '#/components/schemas/ReturnCoverage'
+    ReturnCoverage:
+      description: Счет возврата покрытия. Передается, если отличается от счета плательщика
+      type: object
+      xml:
+        prefix: sbol
+      properties:
+        returnAccount:
+          description: Счет возврата покрытия
+          type: string
+          xml:
+            prefix: sbol
+          pattern: '\d{20,25}'
+        bankDetails:
+          $ref: '#/components/schemas/BankDetails'
+    LcIssueConfirmationParams:
+      description: Параметры сделки нужные при открытии аккредитива
+      type: object
+      xml:
+        prefix: sbol
+      properties:
+        reference:
+          description: референс аккредитива
+          type: string
+          xml:
+            prefix: sbol
+          maxLength: 50
+          example: E2343322005
+        conditions:
+          $ref: '#/components/schemas/LcIssueConditionsWithBankMarks'
+        commission:
+          $ref: '#/components/schemas/Commission'
+        mortgageManagerApproval:
+          $ref: '#/components/schemas/Approval'
+    Approval:
+      description: Согласование заявления
+      type: object
+      xml:
+        prefix: sbol
+      properties:
+        status:
+          description: статус согласования
+          type: string
+          xml:
+            prefix: sbol
+          example: Согласован
+        role:
+          description: роль согласующего
+          type: string
+          xml:
+            prefix: sbol
+          example: Руководитель
+        approver:
+          type: string
+          xml:
+            prefix: sbol
+        time:
+          description: время согласования
+          type: string
+          format: dateTime
+          xml:
+            prefix: sbol
+          example: "2021-10-04T15:26:02.585+03:00"
+        comment:
+          description: комментарий согласующего
+          type: string
+          xml:
+            prefix: sbol
+      required: [status,role]
+    ConditionTexts:
+      description: Условия аккредитива
+      type: array
+      xml:
+        prefix: sbol
+      items:
+        properties:
+          Paragraph:
+            description: Текстовый параграф описания
+            type: string
+            xml:
+              prefix: sbol
+            maxLength: 2000
+            example: Пример одного параграфа тескста дополнительных условий, с которыми соглашается клиент при подписании аккредитива
+        required: [Paragraph]
+    LetterOfCreditAmendment:
+      description: Параметры аккредитива для изменения
+      type: object
+      xml:
+        prefix: sbol
+      properties:
+        amount:
+          description: Сумма сделки
+          xml:
+            prefix: sbol
+          type: integer
+          example: 12300
+        applicant:
+          $ref: '#/components/schemas/Party'
+        plannedExpirationDate:
+          description: Дата истчечения
+          xml:
+            prefix: sbol
+          type: string
+          format: date
+          example: 2021-08-20+03:00
+        hasVat:
+          description: Признак НДС
+          xml:
+            prefix: sbol
+          type: boolean
+          example: false
+        isTransferable:
+          description: Признак допустимости исполнения 3му лицу
+          xml:
+            prefix: sbol
+          type: boolean
+          example: false
+        isPartialAvailabilityAllowed:
+          description: Признак допустимости частичного исполнения
+          xml:
+            prefix: sbol
+          type: boolean
+          example: false
+        paymentPurpose:
+          description: Назначение платежа
+          xml:
+            prefix: sbol
+          type: string
+          maxLength: 7000
+          example: "Оплата по ДКП №300 от 15.02.2022 за земельный участок с кадастровым номером 23:343:34"
+        applicantPhone:
+          description: Номер телефона платльщика
+          xml:
+            prefix: sbol
+          type: string
+          maxLength: 100
+          example: 89996788767
+        applicantAccount:
+          xml:
+            prefix: sbol
+          pattern: \d{20,25}
+          type: string
+          description: Счёт плательщика
+          example: "30101810400000000225"
+        beneficiary:
+          $ref: '#/components/schemas/Party'
+        saleContract:
+          $ref: '#/components/schemas/SaleContract'
+        setOfSubmittedDocuments:
+          xml:
+            prefix: sbol
+          properties:
+            submittedDocument:
+              $ref: '#/components/schemas/SetOfSubmittedDocuments'
+        isEGRNStatementExecutionAllowed:
+          description: Признак НДС
+          xml:
+            prefix: sbol
+          type: boolean
+          example: false
+    ErrorRfc7807:
+      xml:
+        prefix: sbol
+      type: object
+      description: Блок с ошибками
+      properties:
+        status:
+          xml:
+            prefix: sbol
+          description: Статус ошибки
+          type: integer
+          example: 503
+        message:
+          xml:
+            prefix: sbol
+          description: Текстовое описание ошибки
+          type: string
+          example: Service Unavailable
+
+    lcConditionsRq:
+      description: Запрос получения референса и доп. условий аккредитива ФЛ
+      type: object
+      xml:
+        namespace: http://sbolpro.afl.tfido.sbrf.ru
+        prefix: sbol
+      properties:
+        reference:
+          type: string
+          xml:
+            prefix: sbol
+          description: Референс
+          example: "38E21002285"
+        lc:
+          xml:
+            prefix: sbol
+          allOf:
+            -  type: object
+               properties:
+                 "xsi:type":
+                   type: string
+                   enum:
+                     - "sbol:RealtyLetterOfCredit"
+                   xml:
+                     attribute: true
+            - oneOf:
+                - $ref: '#/components/schemas/RealtyLetterOfCredit'
+                - $ref: '#/components/schemas/OtherLetterOfCredit'
+        "xmlns:xsi":
+          type: string
+          enum:
+            - "http://www.w3.org/2001/XMLSchema-instance"
+          xml:
+            attribute: true
+      required: [lc]
+
+    lcConditionsRs:
+      description: Ответ получения референса и доп. условий аккредитива ФЛ
+      type: object
+      xml:
+        namespace: http://sbolpro.afl.tfido.sbrf.ru
+        prefix: sbol
+      oneOf:
+        - $ref: '#/components/schemas/LcConditions'
+        - $ref: '#/components/schemas/ErrorRfc7807'
+    lcIssueRs:
+      description: Ответ на запрос открытия аккредитива ФЛ
+      type: object
+      xml:
+        namespace: http://sbolpro.afl.tfido.sbrf.ru
+        prefix: sbol
+      properties:
+        error:
+          $ref: '#/components/schemas/ErrorRfc7807'
+    lcAmendRs:
+      description: Ответ на запрос изменения аккредитива ФЛ
+      type: object
+      xml:
+        namespace: http://sbolpro.afl.tfido.sbrf.ru
+        prefix: sbol
+      properties:
+        error:
+          $ref: '#/components/schemas/ErrorRfc7807'
+    lcRevokeRs:
+      description: Ответ на запрос отзыва аккредитива ФЛ
+      type: object
+      xml:
+        namespace: http://sbolpro.afl.tfido.sbrf.ru
+        prefix: sbol
+      properties:
+        error:
+          $ref: '#/components/schemas/ErrorRfc7807'
+    lcTransferRs:
+      description: Ответ на запрос на трансферацию аккредитива ФЛ
+      type: object
+      xml:
+        namespace: http://sbolpro.afl.tfido.sbrf.ru
+        prefix: sbol
+      properties:
+        error:
+          $ref: '#/components/schemas/ErrorRfc7807'
+    lcApplicationAcceptRs:
+      description: Ответ на запрос акцепта
+      type: object
+      xml:
+        namespace: http://sbolpro.afl.tfido.sbrf.ru
+        prefix: sbol
+      properties:
+        error:
+          $ref: '#/components/schemas/ErrorRfc7807'
+    lcConsentExtractRequestRs:
+      description: Ответ на передачу согласия плательщика на запрос выписки
+      type: object
+      xml:
+        namespace: http://sbolpro.afl.tfido.sbrf.ru
+        prefix: sbol
+      properties:
+        error:
+          $ref: '#/components/schemas/ErrorRfc7807'
+    lcDocumentsForExecutionRs:
+      description: Ответ на передачу документов для раскрытия
+      type: object
+      xml:
+        namespace: http://sbolpro.afl.tfido.sbrf.ru
+        prefix: sbol
+      properties:
+        error:
+          $ref: '#/components/schemas/ErrorRfc7807'
+    LcConditions:
+      description: Референс и условия на подписание
+      type: object
+      xml:
+        namespace: http://sbolpro.afl.tfido.sbrf.ru
+        prefix: sbol
+      allOf:
+        - $ref: '#/components/schemas/BaseLcIssueConditions'
+        - type: object
+          xml:
+            prefix: sbol
+          properties:
+            reference:
+              xml:
+                prefix: sbol
+              description: Референс сделки
+              type: string
+              maxLength: 50
+              example: E423432423
+          required: [ reference ]
+
+    BaseLcIssueConditions:
+      xml:
+        prefix: sbol
+      type: object
+      description: Тип, описывающий базовый класс всех заявлений
+      properties:
+        amountInWords:
+          xml:
+            prefix: sbol
+          description: Сумма прописью
+          type: string
+          example: Восемь рублей 00 копеек
+        documentsPresentationBankUnits:
+          $ref: '#/components/schemas/ConditionTexts'
+        additionalConditions:
+          $ref: '#/components/schemas/ConditionTexts'
+        specialInstructions:
+          $ref: '#/components/schemas/ConditionTexts'
+        disclaimer:
+          $ref: '#/components/schemas/ConditionTexts'
+        applicantConfirmations:
+          $ref: '#/components/schemas/ConditionTexts'
+      required: [ amountInWords ]
+
+    OtherLetterOfCredit:
+      description: Аккредитив на иное
+      allOf:
+        - $ref: '#/components/schemas/BaseLc'
+    RealtyLetterOfCredit:
+      description: Аккредитив на недвижимость
+      allOf:
+        - $ref: '#/components/schemas/BaseLc'
+        - type: object
+          properties:
+            creditContract:
+              $ref: '#/components/schemas/CreditContract'
+            isAlternative:
+              description: Признак альтернативной сделки
+              xml:
+                prefix: sbol
+              type: boolean
+              example: false
+            isMortgage:
+              description: Признак наличия ипотеки
+              xml:
+                prefix: sbol
+              type: boolean
+              example: false
+            isEGRNStatementExecutionAllowed:
+              description: Признак допустимости раскрытия по выписке
+              xml:
+                prefix: sbol
+              type: boolean
+              example: false
+            ownFundsAmount:
+              description: Сумма собственных средств
+              xml:
+                prefix: sbol
+              type: number
+              example: 300
+            ownFundsAccountNumber:
+              description: Счет для списания покрытия за счет собственных средств
+              xml:
+                prefix: sbol
+              pattern: \d{20,25}
+              type: string
+              example: "40801810400000000225"
+    Attachment:
+      description: Вложения по аккредитиву
+      xml:
+        prefix: sbol
+      type: object
+      properties:
+        MIMEtype:
+          description: Тип данных
+          xml:
+            prefix: sbol
+          type: string
+          maxLength: 100
+          example: pdf
+        filename:
+          description: Имя файла
+          xml:
+            prefix: sbol
+          type: string
+          maxLength: 100
+          example: document314323.pdf
+        ecmId:
+          description: id файла в системе ЕСМ
+          xml:
+            prefix: sbol
+          type: string
+          maxLength: 100
+          example: 312312312312fdf332
+        attachmentType:
+          $ref: '#/components/schemas/AttachmentType'
+    Commission:
+      description: Коммиссия
+      type: object
+      xml:
+        prefix: sbol
+      properties:
+        code:
+          description: Код тарифа коммиссии
+          xml:
+            prefix: sbol
+          type: string
+          maxLength: 50
+          example: 603
+        amount:
+          $ref: '#/components/schemas/AmountWithCurrency'
+        chargesAccount:
+          xml:
+            prefix: sbol
+          pattern: \d{20,25}
+          type: string
+          description: Номер счета для списания коммиссии
+          example: "30101810400000000225"
+        chargesPayingParty:
+          $ref: '#/components/schemas/ChargesPayingType'
+    ChargesPayingType:
+      description: Плательщик по коммиссии
+      xml:
+        prefix: sbol
+      type: string
+      enum:
+        - APPLICANT
+        - BENEFICIARY
+    AttachmentType:
+      description: тип вложения
+      xml:
+        prefix: sbol
+      type: string
+      enum:
+        - LC_TEXT
+        - PAYMENT
+      example: PAYMENT
+    CreditContract:
+      description: Договор ипотеки, используемый при покупке недвижимости через аккредитив
+      type: object
+      xml:
+        prefix: sbol
+      properties:
+        reference:
+          xml:
+            prefix: sbol
+          description: номер кредитного договора
+          type: string
+          maxLength: 100
+          example: 131289383
+        date:
+          xml:
+            prefix: sbol
+          type: string
+          description: дата кредитного договора
+          format: date
+          example: 2021-08-20+03:00
+        amount:
+          $ref: '#/components/schemas/AmountWithCurrency'
+        creditFundsAccountNumber:
+          xml:
+            prefix: sbol
+          pattern: \d{20,25}
+          type: string
+          description: Счёт для списания покрытия за счет кредитных средств
+          example: "40801810400000000225"
+
+    BaseLc:
+      description: Данные заявления физического лица
+      type: object
+      xml:
+        prefix: sbol
+      properties:
+        productType:
+          $ref: '#/components/schemas/ProductType'
+        amount:
+          $ref: '#/components/schemas/AmountWithCurrency'
+        plannedExpirationDate:
+          xml:
+            prefix: sbol
+          type: string
+          description: Плановая дата истечения
+          format: date
+          example: 2021-08-20+03:00
+        isRevocable:
+          xml:
+            prefix: sbol
+          type: boolean
+          description: Признак отзывности
+          example: true
+        isCovered:
+          xml:
+            prefix: sbol
+          type: boolean
+          description: Признак покрытия
+          example: false
+        isLcForeign:
+          xml:
+            prefix: sbol
+          type: boolean
+          description: Признак международного аккредитива
+          example: true
+        availabilityType:
+          $ref: '#/components/schemas/AvailabilityType'
+        hasVat:
+          xml:
+            prefix: sbol
+          type: boolean
+          description: Признак НДС
+          example: true
+        isTransferable:
+          xml:
+            prefix: sbol
+          type: boolean
+          description: Признак допустимости исполнения третьему лицу
+          example: true
+        isPartialAvailabilityAllowed:
+          xml:
+            prefix: sbol
+          type: boolean
+          description: Признак допустимости частичного исполнения
+          example: true
+        issuingBank:
+          $ref: '#/components/schemas/BankDetails'
+        nominatedBank:
+          $ref: '#/components/schemas/BankDetails'
+        advisingBank:
+          $ref: '#/components/schemas/BankDetails'
+        paymentPurpose:
+          xml:
+            prefix: sbol
+          maxLength: 7000
+          type: string
+          description: Назначение платежа
+          example: Платеж по договору №100500
+        applicant:
+          $ref: '#/components/schemas/Party'
+        beneficiary:
+          $ref: '#/components/schemas/Party'
+        saleContract:
+          $ref: '#/components/schemas/SaleContract'
+        setOfSubmittedDocuments:
+          xml:
+            prefix: sbol
+          properties:
+            submittedDocument:
+              $ref: '#/components/schemas/SetOfSubmittedDocuments'
+        documentPresentationPeriodType:
+          $ref: '#/components/schemas/DocumentPresentationPeriodType'
+        draftIssueParams:
+          $ref: '#/components/schemas/LcDraftIssue'
+      required: [productType, amount,plannedExpirationDate,isRevocable,isCovered,isLcForeign,availabilityType,hasVat,isTransferable,isPartialAvailabilityAllowed,issuingBank,
+                 nominatedBank,advisingBank,paymentPurpose,applicant,beneficiary,documentPresentationPeriodType,]
+    LcDraftIssue:
+      xml:
+        prefix: sbol
+      description: Параметры черновика, нужные при открытии аккредитива
+      type: object
+      properties:
+        applicationDraftId:
+          xml:
+            prefix: sbol
+          description:  Идентификатор черновика заявления
+          type: string
+          maxLength: 50
+          example: 8756093047087
+        draftChannel:
+          $ref: '#/components/schemas/DraftChannelType'
+        draftHash:
+          xml:
+            prefix: sbol
+          description: Хэш черновика
+          type: string
+          maxLength: 500
+          example: Rhd643kTgdlow8jsgdtwkdb78Fr
+      required: [applicationDraftId]
+    DraftChannelType:
+      xml:
+        prefix: sbol
+      description: каналы поступления черновика АФЛ
+      type: string
+      enum:
+        - SBER_API_DOMCLICK
+        - SBER_API_DEVELOPER
+        - INTERNAL_CHANNEL
+        - INTERNAL_PSC
+        - SBBOL_DOMCLICK
+        - SBBOL_DEVELOPER
+      example: INTERNAL_CHANNEL
+    DocumentPresentationPeriodType:
+      xml:
+        prefix: sbol
+      description: Период предоставления документов
+      type: string
+      enum:
+        - WITHIH_LC_VALIDITY
+        - OTHER
+    SaleContract:
+      xml:
+        prefix: sbol
+      allOf:
+        - type: object
+          properties:
+            type:
+              $ref: '#/components/schemas/SaleContractType'
+        - type: object
+          properties:
+            reference:
+              xml:
+                prefix: sbol
+              description: Номер договора
+              type: string
+              maxLength: 100
+              example: 100500
+            date:
+              xml:
+                prefix: sbol
+              description: Дата договора
+              type: string
+              format: date
+              example: 2021-08-20+03:00
+            objectOfSale:
+              xml:
+                prefix: sbol
+              oneOf:
+                - properties:
+                    realtyObjectOfSale:
+                      $ref: '#/components/schemas/RealtyObjectOfSale'
+                - properties:
+                    otherObjectOfSale:
+                      $ref: '#/components/schemas/OtherObjectOfSale'
+            buyer:
+              xml:
+                prefix: sbol
+              properties:
+                person:
+                  $ref: '#/components/schemas/ContractParty'
+            seller:
+              xml:
+                prefix: sbol
+              properties:
+                person:
+                  $ref: '#/components/schemas/ContractParty'
+            setOfSubmittedDocuments:
+              xml:
+                prefix: sbol
+              properties:
+                submittedDocument:
+                  $ref: '#/components/schemas/SetOfSubmittedDocuments'
+    SetOfSubmittedDocuments:
+      xml:
+        prefix: sbol
+      description: Комплект документов для предоставления (по И)
+      type: array
+      items:
+        $ref: '#/components/schemas/SubmittedDocument'
+    SubmittedDocument:
+      xml:
+        prefix: sbol
+      description: Документ для предоставления (в случае, если больше одного - читается по ИЛИ)
+      type: object
+      properties:
+        submittedDocumentText:
+          xml:
+            prefix: sbol
+          description: Текст документа для предоставления
+          type: string
+          maxLength: 10000
+          example: ДКП №100500 от 15 января 2022 года
+        submittedDocumentType:
+          xml:
+            prefix: sbol
+          description: Тип документа для исполнения
+          type: string
+          enum:
+            - SALES_CONTRACT
+            - EGRN
+      required: [submittedDocumentText]
+    ContractParty:
+      xml:
+        prefix: sbol
+      description: Сторона договора покупателя или продавца, ФЛ или ЮЛ
+      oneOf:
+        - $ref: '#/components/schemas/Person'
+        - $ref: '#/components/schemas/CompanyContractParty'
+    CompanyContractParty:
+      xml:
+        prefix: sbol
+      description: Имя организации - покупателя или продавца
+      type: string
+      maxLength: 300
+      example: ООО "Рог и Копыто"
+    OtherObjectOfSale:
+      xml:
+        prefix: sbol
+      description: Иной объект продажи
+      type: string
+      maxLength: 1000
+      example: "Пасека в составе 300 ульев, расположенная по адресу: 156 км. Новорязанского шоссе"
+    RealtyObjectOfSale:
+      xml:
+        prefix: sbol
+      description: Данные об объекте недвижимости
+      type: object
+      properties:
+        realtyType:
+          $ref: '#/components/schemas/RealtyObjectType'
+        address:
+          xml:
+            prefix: sbol
+          description: Адрес объекта недвижимости
+          type: string
+          maxLength: 500
+          example: г. Пушкино, ул. Московская, д. 4к32
+        cadastralNumber:
+          xml:
+            prefix: sbol
+          description: Кадастровый номер
+          type: array
+          items:
+            type: string
+            maxLength: 40
+            example: 43:4355:34:4343
+        realtyObjectDescription:
+          xml:
+            prefix: sbol
+          description: описание иного объекта недвижимости
+          type: string
+          maxLength: 1000
+          example: Строительная бытовка повышенной комфортности
+      required: [realtyType,address]
+    RealtyObjectType:
+      xml:
+        prefix: sbol
+      description: Типы недвижимости
+      type: string
+      enum:
+        - APARTMENT
+        - FLAT
+        - FLAT_PART
+        - ROOMS
+        - FLAT_OWNERSHIP_INTEREST
+        - HOUSE
+        - HOUSE_PART
+        - HOUSE_OWNERSHIP_INTEREST
+        - COUNTRY_HOUSE
+        - GARDEN_COTTAGE
+        - GARAGE
+        - PARKING_SLOT
+        - LAND
+        - LAND_LEASEHOLD_INTEREST
+        - LAND_OWNERSHIP_INTEREST
+        - UNFINISHED_BUILDING
+        - BIKE_SLOT
+        - NON_RESIDENTAL
+        - STORAGE
+        - OTHER_REALTY
+      example: FLAT
+    SaleContractType:
+      xml:
+        prefix: sbol
+      description: Типы договоров по недвижимости
+      type: string
+      enum:
+        - SALES
+        - EQUITY_PARTICIPATION
+        - ASSIGNMENT_OF_CLAIMS
+      example: SALES
+    Party:
+      xml:
+        prefix: sbol
+      allOf:
+        - type: object
+          properties:
+            epkId:
+              xml:
+                prefix: sbol
+              maxLength: 50
+              type: string
+              description: ЕПК ИД
+              example: "1533131296748209573945"
+            isResident:
+              xml:
+                prefix: sbol
+              type: boolean
+              description: Признак резиденства
+              example: true
+            #   countryCode:
+            #     xml:
+            #       prefix: sbol
+            #     maxLength: 3
+            #     type: string
+            #     description: Код страны
+            #    example: NIC
+            bank:
+              $ref: '#/components/schemas/BankDetails'
+            account:
+              xml:
+                prefix: sbol
+              pattern: \d{20,25}
+              type: string
+              description: Счёт
+              example: "40801810400000000225"
+            isSberbankAccount:
+              xml:
+                prefix: sbol
+              type: boolean
+              description: Признак счёта Сбербанка
+              example: false
+            bankUnit:
+              $ref: '#/components/schemas/BankUnit'
+            notificationChannels:
+              $ref: '#/components/schemas/lcNotificationType'
+          required: [bank,account,isSberbankAccount,notificationChannels]
+        - type: object
+          oneOf:
+            - properties:
+                legalParty:
+                  $ref: '#/components/schemas/LegalParty'
+              required: [LegalParty]
+            - properties:
+                individualParty:
+                  $ref: '#/components/schemas/IndividualParty'
+              required: [IndividualParty]
+    LegalParty:
+      xml:
+        prefix: sbol
+      description: данные стороны сделки - ЮЛ
+      type: object
+      properties:
+        legalName:
+          xml:
+            prefix: sbol
+          description: Наименование ЮЛ
+          type: string
+          maxLength: 300
+          example: "ООО Кубаньстройпро"
+        taxId:
+          xml:
+            prefix: sbol
+          description: ИНН ЮЛ
+          type: string
+          pattern: \d{10,12}
+          example: "735194754212"
+        contactPersons:
+          type: array
+          items:
+            $ref: '#/components/schemas/ContactPersons'
+        contactDetails:
+          $ref: '#/components/schemas/ContactDetails'
+      required: [legalName,taxId]
+    IndividualParty:
+      xml:
+        prefix: sbol
+      description: данные стороны сделки - ФЛ.
+      type: object
+      properties:
+        person:
+          $ref: '#/components/schemas/Person'
+        taxId:
+          xml:
+            prefix: sbol
+          description: ИНН ФЛ
+          type: string
+          pattern: \d{10,12}
+          example: "7351947542"
+        contactDetails:
+          $ref: '#/components/schemas/ContactDetails'
+        idDocument:
+          $ref: '#/components/schemas/IdentDocument'
+      required: [person]
+    IdentDocument:
+      xml:
+        prefix: sbol
+      description: паспортные данные
+      type: object
+      properties:
+        birthDate:
+          xml:
+            prefix: sbol
+          description: Дата рождения
+          type: string
+          format: date
+          example: 2021-08-20+03:00
+        documentSeries:
+          xml:
+            prefix: sbol
+          description: Серия паспорта РФ
+          type: string
+          pattern: \d{4}
+          example: 4601
+        documentNumber:
+          xml:
+            prefix: sbol
+          description: Номер паспорта РФ
+          type: string
+          pattern: \d{6}
+          example: 445822
+      required: [documentSeries,documentNumber]
+    Person:
+      xml:
+        prefix: sbol
+      description: ФИО
+      type: object
+      properties:
+        firstName:
+          xml:
+            prefix: sbol
+          description: Имя
+          type: string
+          maxLength: 255
+          example: Александр
+        lastName:
+          xml:
+            prefix: sbol
+          description: Фамилия
+          type: string
+          maxLength: 255
+          example: Матросов
+        middleName:
+          xml:
+            prefix: sbol
+          description: Отчество
+          type: string
+          maxLength: 255
+          example: Иванович
+      required: [firstName,lastName]
+    ContactPersons:
+      xml:
+        prefix: sbol
+      description: Контактные лица организации
+      type: object
+      properties:
+        contactPerson:
+          $ref: '#/components/schemas/ContactPerson'
+      required: [contactPerson]
+    ContactPerson:
+      xml:
+        prefix: sbol
+      description: описание персоны
+      type: object
+      properties:
+        name:
+          xml:
+            prefix: sbol
+          description: ФИО контактного лица
+          type: string
+          maxLength: 300
+          example: Александр Иванович Матросов
+        contactDetails:
+          $ref: '#/components/schemas/ContactDetails'
+    ContactDetails:
+      xml:
+        prefix: sbol
+      description: описание контактов
+      type: object
+      properties:
+        phone:
+          xml:
+            prefix: sbol
+          description:  телефон
+          type: string
+          maxLength: 100
+          example: 88005553535
+        email:
+          xml:
+            prefix: sbol
+          description: email адрес
+          type: string
+          example: dfdf@ru.ru
+    lcNotificationType:
+      xml:
+        prefix: sbol
+      description: Способы уведомления получателя или плательщика
+      type: object
+      properties:
+        NotificationChannel:
+          xml:
+            prefix: sbol
+          type: string
+          enum:
+            - BRANCH
+            - SWIFT
+            - SBOL
+            - EMAIL
+            - SBBOL
+            - E_INVOICING
+            - OTHER_NOTIFICATION
+          example: SBOL
+      required: [NotificationChannel]
+    BankUnit:
+      xml:
+        prefix: sbol
+      description: Подразделение банка
+      type: object
+      properties:
+        name:
+          xml:
+            prefix: sbol
+          maxLength: 300
+          type: string
+          description: Наименование подразделения
+          example: МОСКОВСКИЙ БАНК СБЕРБАНКА РОССИИ
+        address:
+          xml:
+            prefix: sbol
+          maxLength: 500
+          type: string
+          minLength: 5
+          dfdsf: 5
+          nullable: true
+          description: Адрес подразделения
+          example: 143124, г. Москва, ул. Пушкина, д. 106к4
+        code:
+          xml:
+            prefix: sbol
+          maxLength: 5
+          type: string
+          description: Код ОСБ
+          example: "9832"
+        regionalBankCode:
+          xml:
+            prefix: sbol
+          maxLength: 2
+          type: string
+          description: Код ТБ
+          example: "38"
+        subBranchCode:
+          xml:
+            prefix: sbol
+          maxLength: 10
+          type: string
+          description: Код ВСП
+        sbIdnt:
+          xml:
+            prefix: sbol
+          pattern: \d4
+          type: string
+          description: Код филиала (ИД участника)
+          example: "3800"
+      required: [name]
+    BankDetails:
+      xml:
+        prefix: sbol
+      description: Набор реквизитов банка
+      type: object
+      properties:
+        name:
+          xml:
+            prefix: sbol
+          maxLength: 500
+          type: string
+          description: Наименование банка
+          example: ПАО 'Сбербанк'
+        swift:
+          xml:
+            prefix: sbol
+          maxLength: 11
+          minLength: 8
+          type: string
+          description: SWIFT код банка
+          example: SABRRUMM
+        country:
+          xml:
+            prefix: sbol
+          maxLength: 500
+          type: string
+          description: Страна банка
+          example: Никарагуа
+        city:
+          xml:
+            prefix: sbol
+          maxLength: 500
+          type: string
+          description: Город банка
+          example: Манагуа
+        bic:
+          xml:
+            prefix: sbol
+          pattern: \d9
+          type: string
+          description: БИК банка
+          example: "445252295"
+        correspondentAccount:
+          xml:
+            prefix: sbol
+          pattern: \d{20,25}
+          type: string
+          description: Корр. счёт банка
+          example: "30101810400000000225"
+      required: [name,bic]
+    AvailabilityType:
+      xml:
+        prefix: sbol
+      type: string
+      description: Способы исполнения аккредитива
+      example: PAYMENT_AT_SIGN
+      enum:
+        - PAYMENT_AT_SIGN
+        - DEF_PAYMENT
+    AmountWithCurrency:
+      xml:
+        prefix: sbol
+      type: object
+      description: Сумма и код валюты
+      properties:
+        amount:
+          xml:
+            prefix: sbol
+          type: number
+          description: сумма
+        currency:
+          xml:
+            prefix: sbol
+          maxLength: 3
+          type: string
+          description: Валюта
+          example: RUB
+      required: [amount,currency]
+    ProductType:
+      xml:
+        prefix: sbol
+      type: string
+      description: Тип сделки
+      example: REALTY
+      enum:
+        - REALTY
+        - REALTY_ESCROW
+        - OTHER_PRODUCT
+        - LOGISTICS
+        - AUTO
+
+    lcIssueRq:
+      description: Запрос на открытие аккредитива ФЛ
+      type: object
+      xml:
+        namespace: http://sbolpro.afl.tfido.sbrf.ru
+        prefix: sbol
+      properties:
+        epkId:
+          xml:
+            prefix: sbol
+          description: ЕПК ИД клиента
+          type: string
+          maxLength: 50
+          example: "1485932906320904044"
+        trustedParty:
+          $ref: '#/components/schemas/TrustedParty'
+        application:
+          $ref: '#/components/schemas/IssueApplication'
+        "xmlns:xsi":
+          type: string
+          enum:
+            - "http://www.w3.org/2001/XMLSchema-instance"
+          xml:
+            attribute: true
+      required: [epkId, application]
+
+    LcIssueConditionsWithBankMarks:
+      description: Условия открытия акккредитива, с которыми соглашается клиент
+      type: object
+      xml:
+        namespace: http://sbolpro.afl.tfido.sbrf.ru
+        prefix: sbol
+      allOf:
+        - $ref: '#/components/schemas/BaseLcIssueConditions'
+        - type: object
+          xml:
+            prefix: sbol
+          properties:
+            bankMarks:
+              $ref: '#/components/schemas/ConditionTexts'
+    lcTransferRq:
+      description: Запрос на трансферацию
+      type: object
+      xml:
+        namespace: http://sbolpro.afl.tfido.sbrf.ru
+        prefix: sbol
+      properties:
+        epkId:
+          xml:
+            prefix: sbol
+          description: ЕПК получателя
+          type: string
+          maxLength: 50
+          example: "1485932906320904044"
+        trustedParty:
+          $ref: '#/components/schemas/TrustedParty'
+        application:
+          $ref: '#/components/schemas/TransferApplication'
+        "xmlns:xsi":
+          type: string
+          enum:
+            - "http://www.w3.org/2001/XMLSchema-instance"
+          xml:
+            attribute: true
+      required: [epkId, application]
+    TransferApplication:
+      description: Заявление на трансферацию
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/BaseApplication'
+        - type: object
+          properties:
+            lcTransfer:
+              $ref: '#/components/schemas/LetterOfCreditTransfer'
+            additionalParams:
+              $ref: '#/components/schemas/LcAmendmentRevocationConfirmationParams'
+          required: [lcTransfer, additionalParams]
+    LetterOfCreditTransfer:
+      description: Параметры аккредитива для трансферации
+      type: object
+      xml:
+        prefix: sbol
+      properties:
+        transferId:
+          xml:
+            prefix: sbol
+          description: id трансферации
+          type: string
+          pattern: \d+
+          maxLength: 40
+          example: "1485932906320904044"
+      # to do
+      #     transferDocument:
+      #       xml:
+      #         prefix: sbol
+      #       description: Комплект представляемых документов (только документы для трансферации)
+      #       type: array
+      #       items:
+      #         $ref: '#/components/schemas/SubmittedDocument'
+      oneOf:
+        - type: object
+          properties:
+            toLegalOrIndividualParty:
+              allOf:
+                - type: object
+                  xml:
+                    prefix: sbol
+                  properties:
+                    amount:
+                      $ref: '#/components/schemas/AmountWithCurrency'
+                - type: object
+                  properties:
+                    hasVat:
+                      description: Признак НДС
+                      xml:
+                        prefix: sbol
+                      type: boolean
+                      example: false
+                - type: object
+                  properties:
+                    beneficiary:
+                      $ref: '#/components/schemas/Party'
+          required: [ toLegalOrIndividualParty ]
+        - type: object
+          properties:
+            toSberbank:
+              $ref: '#/components/schemas/CreditContractShort'
+          required: [ toSberbank ]
+      required: [epkId]
+    CreditContractShort:
+      description: Договор ипотеки, используемый при покупке недвижимости через аккредитив
+      type: object
+      xml:
+        prefix: sbol
+      properties:
+        reference:
+          xml:
+            prefix: sbol
+          description: номер кредитного договора
+          type: string
+          maxLength: 100
+          example: 131289383
+        date:
+          xml:
+            prefix: sbol
+          type: string
+          description: дата кредитного договора
+          format: date
+          example: 2021-08-20+03:00
+        regionalBankCode:
+          xml:
+            prefix: sbol
+          maxLength: 2
+          type: string
+          description: Код ТБ
+          example: "38"
+
+    lcDocumentsForExecutionRq:
+      description: Запрос на передачу документов для раскрытия
+      type: object
+      xml:
+        namespace: http://sbolpro.afl.tfido.sbrf.ru
+        prefix: sbol
+      properties:
+        epkId:
+          $ref: '#/components/schemas/EpkId'
+        trustedParty:
+          $ref: '#/components/schemas/TrustedParty'
+        application:
+          $ref: '#/components/schemas/DocumentsForExecutionApplication'
+        "xmlns:xsi":
+          type: string
+          enum:
+            - "http://www.w3.org/2001/XMLSchema-instance"
+          xml:
+            attribute: true
+      required: [application]
+    DocumentsForExecutionApplication:
+      description: Заявление на передачу документов для раскрытия
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/BaseApplication'
+        - type: object
+          properties:
+            documents:
+              $ref: '#/components/schemas/Documents'
+            additionalParams:
+              $ref: '#/components/schemas/LcAmendmentRevocationConfirmationParams'
+            documentRequirements:
+              $ref: '#/components/schemas/SubmittedDocument'
+          required: [additionalParams]
+    Documents:
+      description: Тип, описывающий набор атрибутов документов для раскрытия
+      type: object
+      properties:
+        party:
+          description: сторона, предоставляющая документы
+          type: string
+          enum:
+            - BENEFICIARY
+            - APPLICANT
+            - BANK
+            - THIRD_SIDE
+        attachments:
+          type: object
+          properties:
+            attachment:
+              type: array
+              items:
+                $ref: '#/components/schemas/Attachment'
+    TrustedParty:
+      description: Тип, описывающий доверенное лицо, оформляющее заявление
+      type: object
+      properties:
+        trustedPerson:
+          $ref: '#/components/schemas/Person'
+        epkId:
+          $ref: '#/components/schemas/EpkId'
+        uddkDocumentID:
+          description: ID документа в системе УДДК
+          type: string
+          maxLength: 50
+          xml:
+            prefix: sbol
+        documentType:
+          description: Тип документа
+          type: string
+          xml:
+            prefix: sbol
+          maxLength: 255
+        numberDocument:
+          description: Номер документа
+          type: string
+          xml:
+            prefix: sbol
+          maxLength: 50
+        dateDocument:
+          description: Дата регистрации документа
+          type: string
+          xml:
+            prefix: sbol
+          format: dateTime
+        notaryPerson:
+          $ref: '#/components/schemas/Person'
+
+    lcConsentExtractRequestRq:
+      description: Запрос на получение согласия на запрос выписки
+      type: object
+      xml:
+        namespace: http://sbolpro.afl.tfido.sbrf.ru
+        prefix: sbol
+      properties:
+        epkId:
+          $ref: '#/components/schemas/EpkId'
+        application:
+          $ref: '#/components/schemas/ConsentExtractRequestApplication'
+        "xmlns:xsi":
+          type: string
+          enum:
+            - "http://www.w3.org/2001/XMLSchema-instance"
+          xml:
+            attribute: true
+      required: [epkId, application]
+    ConsentExtractRequestApplication:
+      description: Заявление на получение согласия на запрос выписки
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/BaseApplication'
+        - type: object
+          required: [consentExtractRequest,additionalParams]
+          properties:
+            consentExtractRequest:
+              $ref: '#/components/schemas/ConsentExtractRequest'
+            additionalParams:
+              $ref: '#/components/schemas/LcAmendmentRevocationConfirmationParams'
+    ConsentExtractRequest:
+      description: Согласие клиента на запрос выписки
+      type: object
+      required: [OID,isConsent]
+      xml:
+        prefix: sbol
+      properties:
+        OID:
+          description: Идентификатор пользователя на портале Госуслуги
+          type: string
+          xml:
+            prefix: sbol
+          maxLength: 50
+        isConsent:
+          description: Признак согласия клиента на запрос выписки на портале Госуслуг
+          type: boolean
+          xml:
+            prefix: sbol
+        notes:
+          description: Текстовое поле для дополнительной информации о согласии клиента на запрос выписки
+          type: string
+          xml:
+            prefix: sbol
+          maxLength: 500
+        expireDate:
+          description: Дата окончания действия согласия на запрос выписки
+          type: string
+          xml:
+            prefix: sbol
+          format: dateTime
+
+    lcApplicationAcceptRq:
+      description: Запрос на подтверждение заявления
+      type: object
+      xml:
+        namespace: http://sbolpro.afl.tfido.sbrf.ru
+        prefix: sbol
+      properties:
+        epkId:
+          $ref: '#/components/schemas/EpkId'
+        trustedParty:
+          $ref: '#/components/schemas/TrustedParty'
+        application:
+          $ref: '#/components/schemas/ApplicationAccept'
+        "xmlns:xsi":
+          type: string
+          enum:
+            - "http://www.w3.org/2001/XMLSchema-instance"
+          xml:
+            attribute: true
+      required: [ epkId, application ]
+    ApplicationAccept:
+      description: Заявление на согласие/отказ
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/BaseApplication'
+        - type: object
+          required: [ applicationAccept,additionalParams ]
+          properties:
+            applicationAccept:
+              $ref: '#/components/schemas/ApplicationParameters'
+            additionalParams:
+              $ref: '#/components/schemas/LcAmendmentRevocationConfirmationParams'
+    ApplicationParameters:
+      description: Параметры заявления на согласие/отказ
+      type: object
+      xml:
+        prefix: sbol
+      required: [processId,applicationType,approve]
+      properties:
+        processId:
+          description: Id заявления
+          type: string
+          xml:
+            prefix: sbol
+          maxLength: 20
+        applicationType:
+          description: Тип заявления
+          type: string
+          enum:
+            - AMENDMENT
+            - REVOCATION
+            - EXECUTION
+          xml:
+            prefix: sbol
+        approve:
+          description: Решение (true = согласие, false = отказ)
+          type: boolean
+          xml:
+            prefix: sbol
+        description:
+          description: Комментарий принимавшего решение
+          type: string
+          maxLength: 1000
+          xml:
+            prefix: sbol
